@@ -1,0 +1,10 @@
+adminpanel credential
+user:-admin
+password:-123456
+
+
+
+
+required package
+openpyxl
+

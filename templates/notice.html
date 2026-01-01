@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Notifications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #e0e0e0;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background-color: rgb(0, 126, 126);
+            color: #000;
+        }
+
+        thead th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #4a148c;
+        }
+
+        thead th:first-child {
+            width: 80px;
+            text-align: center;
+        }
+
+        thead th:nth-child(3) {
+            width: 150px;
+            text-align: center;
+        }
+
+        thead th:last-child {
+            width: 80px;
+            text-align: center;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #e3f2fd;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tbody tr:hover {
+            background-color: #bbdefb;
+        }
+
+        tbody td {
+            padding: 18px 15px;
+            font-size: 14px;
+            color: #000;
+            border: 1px solid #e0e0e0;
+        }
+
+        tbody td:first-child {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        tbody td:nth-child(2) {
+            font-weight: 500;
+        }
+
+        tbody td:nth-child(3) {
+            text-align: center;
+        }
+
+        tbody td:last-child {
+            text-align: center;
+        }
+
+        .pdf-icon {
+            color: #d32f2f;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .pdf-icon:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 10px 8px;
+            }
+
+            tbody td:nth-child(2) {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+{% include 'header.html' %}
+
+<body>
+    <div class="header">
+        <h1>Official Notifications</h1>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr.no</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Notification 1</td>
+                    <td>30-12-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr>
+                <!-- <tr>
+                    <td>2</td>
+                    <td>Accreditation Models Fee Structure Update</td>
+                    <td>12-12-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>3</td>
+                    <td>Notification for the Launch of ICTRD Certified Frontend Development</td>
+                    <td>18-11-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>4</td>
+                    <td>Recruitment Notice For 2025-26/01</td>
+                    <td>24-10-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>5</td>
+                    <td>Notification for the Launch of Certified React Developer Program</td>
+                    <td>27-05-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>6</td>
+                    <td>Notification for the launch of Certified Data Security Associate Program</td>
+                    <td>05-05-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>7</td>
+                    <td>Notification for the launch of Certified Cyber Security Professional Program</td>
+                    <td>18-04-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>8</td>
+                    <td>Internship Guidelines and Policies Update- Notification</td>
+                    <td>07-04-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+                <!-- <tr>
+                    <td>9</td>
+                    <td>Formation of Vishakha Committee- Notification</td>
+                    <td>01-04-2025</td>
+                    <td><a href="#" class="pdf-icon">📄</a></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+</body>
+{% include 'footer.html' %}
+
+</html>

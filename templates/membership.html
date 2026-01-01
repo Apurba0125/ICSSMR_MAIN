@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICSSMR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9f9f9;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title .highlight {
+            color: #ff6b35;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* Welcome Kit Section */
+        .welcome-kit {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 60px;
+        }
+
+        .kit-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .kit-image {
+            position: relative;
+        }
+
+        .kit-image::before {
+            content: '🎁';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .kit-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .kit-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .kit-features {
+            list-style: none;
+        }
+
+        .kit-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .kit-features li:last-child {
+            border-bottom: none;
+        }
+
+        .kit-features li::before {
+            content: '✓';
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff6b35, #ff8e53);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c2c2c;
+        }
+
+        .benefit-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Membership Types */
+        .membership-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .membership-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .membership-card.featured {
+            border: 3px solid #ff6b35;
+            transform: scale(1.05);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b35, #ff8e53);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .membership-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .membership-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .membership-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c2c2c;
+        }
+
+        .membership-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            min-height: 80px;
+        }
+
+        .membership-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 25px;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .apply-btn.secondary {
+            background: linear-gradient(135deg, #ff6b35, #ff8e53);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .apply-btn.secondary:hover {
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Student Chapter Section */
+        .student-chapter {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            border-radius: 20px;
+            padding: 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .student-chapter::before {
+            content: '🎓';
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            font-size: 8rem;
+            opacity: 0.1;
+        }
+
+        .chapter-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .chapter-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .chapter-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .chapter-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chapter-box ul {
+            list-style: none;
+        }
+
+        .chapter-box li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .chapter-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Revenue Sharing */
+        .revenue-box {
+            background: white;
+            color: #2c2c2c;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .revenue-box h4 {
+            color: #ff6b35;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .revenue-example {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #2ecc71;
+        }
+
+        /* How to Apply Section */
+        .apply-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .apply-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .method-card {
+            padding: 40px 30px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .method-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .method-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            margin-top: 60px;
+            border-radius: 20px;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 18px 45px;
+            background: white;
+            color: #ff6b35;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .kit-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .membership-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 20px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .welcome-kit,
+            .student-chapter,
+            .apply-section {
+                padding: 30px 20px;
+            }
+
+            .kit-box {
+                padding: 40px 20px;
+            }
+
+            .chapter-title,
+            .cta-title {
+                font-size: 1.8rem;
+            }
+
+            .benefits-grid,
+            .membership-types,
+            .chapter-grid,
+            .apply-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .membership-price {
+                font-size: 2rem;
+            }
+
+            .student-chapter::before {
+                font-size: 5rem;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+        {% include 'header.html' %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Join ICSSMR Membership</h1>
+            <p class="hero-subtitle">
+                Connect with a national network of academicians, researchers, and professionals.
+                Gain access to exclusive resources, training programs, and opportunities for growth.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">Active Members</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Institutions</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Annual Events</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- About Membership Section -->
+        <section class="section">
+            <h2 class="section-title">About <span class="highlight">ICSSMR</span> Membership</h2>
+            <p class="section-description">
+                Membership with the Indian Centre for Social Science and Management Research (ICSSMR) is a mark of
+                professional recognition,
+                awarded to individuals who demonstrate commitment and excellence in the fields of management and social
+                sciences. As a member,
+                you gain access to a collaborative platform that brings together academicians, researchers,
+                professionals, and students from
+                across India and beyond.
+            </p>
+
+            <!-- Welcome Kit -->
+            <div class="welcome-kit">
+                <div class="kit-content">
+                    <div class="kit-image">
+                        <div class="kit-box">
+                            <div class="kit-icon">📦</div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Welcome Kit</h3>
+                            <p style="opacity: 0.9; margin-bottom: 20px;">Delivered to your doorstep within one month
+                            </p>
+                        </div>
+                    </div>
+                    <div class="kit-details">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #2c2c2c;">Every Member Receives</h3>
+                        <ul class="kit-features">
+                            <li>ICSSMR Membership Certificate</li>
+                            <li>Official Identity Card</li>
+                            <li>Personalized Certificate</li>
+                            <li>ICSSMR-branded Notepad</li>
+                            <li>Exclusive Merchandise</li>
+                            <li>Access to Member Gateway</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="section">
+            <h2 class="section-title">Membership <span class="highlight">Benefits</span></h2>
+            <p class="section-description">
+                Becoming a member of ICSSMR offers meaningful opportunities for growth, collaboration, and recognition
+                within the field of management and social sciences.
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🏆</span>
+                    <h3 class="benefit-title">Official Recognition</h3>
+                    <p class="benefit-description">
+                        Receive a formal ICSSMR Membership Certificate, acknowledging your association with a nationally
+                        recognized centre under MSME, Government of India.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">📚</span>
+                    <h3 class="benefit-title">Publication Access</h3>
+                    <p class="benefit-description">
+                        Members in India receive one-year subscription to ICSSMR Journals. International members receive
+                        two complimentary copies of publications.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎓</span>
+                    <h3 class="benefit-title">Scholarships & Awards</h3>
+                    <p class="benefit-description">
+                        Eligible to apply for scholarships and awards recognizing academic and professional excellence
+                        in
+                        management and social sciences.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">💼</span>
+                    <h3 class="benefit-title">Internship Opportunities</h3>
+                    <p class="benefit-description">
+                        Student Members can apply for internships through ICSSMR's network of academic and corporate
+                        partners.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">📝</span>
+                    <h3 class="benefit-title">Research Contributions</h3>
+                    <p class="benefit-description">
+                        Submit papers for presentation at ICSSMR's annual International Conferences, Seminars, and
+                        Symposiums.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">👨‍🏫</span>
+                    <h3 class="benefit-title">Faculty Benefits</h3>
+                    <p class="benefit-description">
+                        Faculty Members receive 30% discount on paper submissions and one free paper submission per year
+                        to any ICSSMR Journal.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">🤝</span>
+                    <h3 class="benefit-title">Leadership Opportunities</h3>
+                    <p class="benefit-description">
+                        Apply for roles within ICSSMR's publication or management teams, Management Council, and
+                        Advisory Boards.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">🌐</span>
+                    <h3 class="benefit-title">Networking Platform</h3>
+                    <p class="benefit-description">
+                        Connect with like-minded professionals, researchers, and academicians passionate about advancing
+                        knowledge.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Membership Types -->
+        <section class="section">
+            <h2 class="section-title">Individual <span class="highlight">Membership</span> Types</h2>
+            <p class="section-description">
+                ICSSMR offers four distinct types of individual memberships, carefully designed to meet the needs of
+                academicians, researchers, professionals, and students.
+            </p>
+
+            <div class="membership-types">
+                <div class="membership-card">
+                    <span class="membership-icon">💼</span>
+                    <h3 class="membership-name">Associate Membership</h3>
+                    <p class="membership-description">
+                        Open to professionals from corporate and industry sectors seeking to contribute to academic and
+                        research-driven initiatives.
+                    </p>
+                    <div class="membership-price">₹1,400</div>
+                    <p class="price-note">+ GST</p>
+                    <a href="{% url 'associate_membershipform' %}" class="apply-btn secondary">Apply Now</a>
+                </div>
+
+                <div class="membership-card featured">
+                    <span class="featured-badge">Most Popular</span>
+                    <span class="membership-icon">👨‍🏫</span>
+                    <h3 class="membership-name">Faculty Membership</h3>
+                    <p class="membership-description">
+                        Available to faculty members and academicians in colleges, universities offering management and
+                        social science programs.
+                    </p>
+                    <div class="membership-price">₹1,150</div>
+                    <p class="price-note">+ GST</p>
+                    <a href="{% url 'faculty_membershipform' %}" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="membership-card">
+                    <span class="membership-icon">🎓</span>
+                    <h3 class="membership-name">Student Membership</h3>
+                    <p class="membership-description">
+                        Open to undergraduate, postgraduate students, and research scholars currently enrolled at
+                        colleges or universities.
+                    </p>
+                    <div class="membership-price">₹650</div>
+                    <p class="price-note">+ GST</p>
+                    <a href="{% url 'stu_membershipform' %}" class="apply-btn secondary">Apply Now</a>
+                </div>
+
+                <div class="membership-card">
+                    <span class="membership-icon">⭐</span>
+                    <h3 class="membership-name">Honorary Membership</h3>
+                    <p class="membership-description">
+                        Reserved for distinguished individuals recommended by existing Governing Body, Management
+                        Council, or Board Members.
+                    </p>
+                    <div class="membership-price">Free</div>
+                    <p class="price-note">By Invitation Only</p>
+                    <!-- <a href="#" class="apply-btn">Learn More</a> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Chapter Section -->
+        <section class="section">
+            <div class="student-chapter">
+                <div class="chapter-content">
+                    <h2 class="chapter-title">ICSSMR Student Chapter</h2>
+                    <p style="font-size: 1.1rem; opacity: 0.95; margin-bottom: 30px;">
+                        A dedicated platform within educational institutions to empower students through professional
+                        development,
+                        networking, and active participation in activities aligned with their academic fields.
+                    </p>
+
+                    <div class="chapter-grid">
+                        <div class="chapter-box">
+                            <h4>📋 Eligibility</h4>
+                            <ul>
+                                <li>Registered colleges & universities</li>
+                                <li>Minimum 50 students required</li>
+                                <li>Maximum 60 students</li>
+                                <li>Up to 2 faculty coordinators</li>
+                            </ul>
+                        </div>
+
+                        <div class="chapter-box">
+                            <h4>🎁 Student Benefits</h4>
+                            <ul>
+                                <li>Official Membership Card</li>
+                                <li>Chapter Invitation Letter</li>
+                                <li>Notepad & Stationery Kit</li>
+                                <li>Free ICSSMR Certification (₹300)</li>
+                                <li>Priority event access</li>
+                            </ul>
+                        </div>
+
+                        <div class="chapter-box">
+                            <h4>🏛️ Institution Benefits</h4>
+                            <ul>
+                                <li>Official Chapter Certificate</li>
+                                <li>Project funding proposals</li>
+                                <li>Use of ICSSMR logo</li>
+                                <li>Professional mentorship</li>
+                                <li>50% membership discount</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="revenue-box">
+                        <h4>💰 Revenue Sharing Model: 50% for Institutions</h4>
+                        <p style="color: #666; margin-bottom: 15px;">
+                            Institutions receive 50% of the total student membership revenue collected through the
+                            chapter.
+                        </p>
+                        <div class="revenue-example">
+                            <strong>Example:</strong> If 100 students enroll at a discounted fee of ₹300 each:<br>
+                            Total Revenue: ₹30,000 | Institution Share: <strong style="color: #2ecc71;">₹15,000</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Apply Section -->
+        <section class="section">
+            <div class="apply-section" id="apply">
+                <h2 class="section-title">How to <span class="highlight">Become</span> a Member?</h2>
+                <p class="section-description">
+                    The application process is simple and convenient. Choose your preferred method below.
+                </p>
+
+                <div class="apply-methods">
+                    <div class="method-card">
+                        <div class="method-icon">💻</div>
+                        <h3 class="method-title">Online Application</h3>
+                        <p style="color: #666; margin-bottom: 20px;">
+                            Submit your application directly through our website portal
+                        </p>
+                        <a href="#" class="apply-btn">Apply Online</a>
+                    </div>
+
+                    <div class="method-card">
+                        <div class="method-icon">📄</div>
+                        <h3 class="method-title">Offline Application</h3>
+                        <p style="color: #666; margin-bottom: 20px;">
+                            Download the form, fill it, and send it to ICSSMR office
+                        </p>
+                        <a href="#" class="apply-btn secondary">Download Form</a>
+                    </div>
+
+                    <div class="method-card">
+                        <div class="method-icon">🏢</div>
+                        <h3 class="method-title">Institutional Membership</h3>
+                        <p style="color: #666; margin-bottom: 20px;">
+                            For organizations, colleges, universities, and NGOs
+                        </p>
+                        <a href="#" class="apply-btn">Contact Us</a>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px; padding: 30px; background: #f9f9f9; border-radius: 15px;">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: #2c2c2c;">For Individual Memberships:</h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        Student Member, Research Scholar Member, Faculty Member, or Professional Member can apply online
+                        or offline
+                        by submitting the membership form to ICSSMR.
+                    </p>
+                </div>
+
+                <div style="margin-top: 20px; padding: 30px; background: #f9f9f9; border-radius: 15px;">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: #2c2c2c;">For Institutional Memberships:
+                    </h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        Registered organizations, companies, colleges, universities, and both government and
+                        non-government
+                        organizations (NGOs) with a physical presence are eligible to apply. Applications may be
+                        submitted
+                        online through our website or via offline/manual mode.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CTA Section -->
+    <!-- <section class="cta-section">
+        <h2 class="cta-title">Ready to Join ICSSMR?</h2>
+        <p class="cta-description">
+            Become part of a growing network of scholars, researchers, and professionals contributing to a more
+            informed,
+            equitable, and progressive society.
+        </p>
+        <div class="cta-buttons">
+            <a href="#apply" class="cta-button">Apply for Membership</a>
+            <a href="#" class="cta-button outline">Download Brochure</a>
+        </div>
+    </section> -->
+
+
+
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.benefit-card, .membership-card, .chapter-box, .method-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + '+';
+                }
+            }, 30);
+        };
+
+        // Animate stats when hero is visible
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.stat-number').forEach((stat, index) => {
+                        const targets = [5000, 100, 50];
+                        setTimeout(() => {
+                            animateCounter(stat, targets[index]);
+                        }, index * 200);
+                    });
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            heroObserver.observe(heroSection);
+        }
+    </script>
+
+
+
+        {% include 'footer.html' %}
+</body>
+
+</html>

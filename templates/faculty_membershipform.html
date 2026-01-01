@@ -1,0 +1,794 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2C4A5F 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 50px;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .logo {
+            max-width: 120px;
+            height: auto;
+            margin: 0 auto 15px;
+            display: inline-block;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .required {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            padding: 12px 15px;
+            border: 2px solid #e8e8e8;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .radio-item label,
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .specialization-section {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spec-item label {
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .designation-section {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .designation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .designation-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .designation-item label {
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .file-upload {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .file-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .file-name {
+            color: #667eea;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 14px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-reset {
+            background: #e8e8e8;
+            color: #333;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .btn-reset:hover {
+            background: #d8d8d8;
+        }
+
+        .disclaimer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .disclaimer-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .spec-grid,
+            .designation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-submit,
+            .btn-reset {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <img src="{% static 'images/logo.jpg' %}" alt="Organization Logo" class="logo">
+        </div>
+        <div class="header">
+            <h1>Faculty Membership Application Form</h1>
+            <p>Please fill in all required fields marked with *</p>
+        </div>
+
+        <form id="facultyForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Personal Information -->
+            <div class="form-section">
+                <div class="section-title">Personal Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Salutation <span class="required">*</span></label>
+                        <select name="salutation" required>
+                            <option value="">Select Salutation</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Ms.">Ms.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Dr.">Dr.</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name <span class="required">*</span></label>
+                        <input type="text" name="name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date of Birth <span class="required">*</span></label>
+                        <input type="text" name="dob" placeholder="DD/MM/YYYY" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="male" name="gender" value="Male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="female" name="gender" value="Female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="other" name="gender" value="Other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+                <div class="section-title">Contact Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email ID <span class="required">*</span></label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number <span class="required">*</span></label>
+                        <input type="tel" name="mobile" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>WhatsApp Number</label>
+                        <input type="tel" name="whatsapp">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Information -->
+            <div class="form-section">
+                <div class="section-title">Professional Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Present Institution <span class="required">*</span></label>
+                        <input type="text" name="institution" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Work Experience (in completed year) <span class="required">*</span></label>
+                        <input type="number" name="experience" min="0" max="70" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Present Designation <span class="required">*</span></label>
+                    <div class="designation-section">
+                        <div class="designation-grid">
+                            <div class="designation-item">
+                                <input type="radio" id="ap" name="designation" value="Assistant Professor" required>
+                                <label for="ap">Assistant Professor</label>
+                            </div>
+                            <div class="designation-item">
+                                <input type="radio" id="acp" name="designation" value="Associate Professor">
+                                <label for="acp">Associate Professor</label>
+                            </div>
+                            <div class="designation-item">
+                                <input type="radio" id="prof" name="designation" value="Professor">
+                                <label for="prof">Professor</label>
+                            </div>
+                            <div class="designation-item">
+                                <input type="radio" id="ta" name="designation" value="Technical Assistant">
+                                <label for="ta">Technical Assistant</label>
+                            </div>
+                            <div class="designation-item">
+                                <input type="radio" id="other-des" name="designation" value="Others">
+                                <label for="other-des">Others </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Highest Qualification <span class="required">*</span></label>
+                        <select name="qualification" required>
+                            <option value="">Select Qualification</option>
+                            <option value="UG">UG</option>
+                            <option value="PG">PG</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="PhD">PhD</option>
+                            <option value="CA">CA</option>
+                            <option value="Other">Other Professional Qualification</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain & Specialization -->
+            <div class="form-section">
+                <div class="section-title">Domain & Specialization</div>
+
+                <div class="form-group">
+                    <label>Domain <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="commerce" name="domain" value="Commerce" required>
+                            <label for="commerce">Commerce</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="management" name="domain" value="Management">
+                            <label for="management">Management</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="socialScience" name="domain" value="Social Science">
+                            <label for="socialScience">Social Science</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="humanities" name="domain" value="Humanities">
+                            <label for="humanities">Humanities</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="otherDomain" name="domain" value="Others">
+                            <label for="otherDomain">Others</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Specialization <span class="required">*</span></label>
+                    <div class="specialization-section">
+                        <div class="spec-grid">
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec1" name="specialization" value="Marketing">
+                                <label for="spec1">Marketing</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec2" name="specialization" value="Digital Marketing">
+                                <label for="spec2">Digital Marketing</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec3" name="specialization" value="HR">
+                                <label for="spec3">HR</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec4" name="specialization" value="Finance">
+                                <label for="spec4">Finance</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec5" name="specialization" value="Commerce">
+                                <label for="spec5">Commerce</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec6" name="specialization" value="Language">
+                                <label for="spec6">Language</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec7" name="specialization" value="Sociology">
+                                <label for="spec7">Sociology</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec8" name="specialization" value="Political Science">
+                                <label for="spec8">Political Science</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec9" name="specialization" value="History">
+                                <label for="spec9">History</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec10" name="specialization" value="Business Analytics">
+                                <label for="spec10">Business Analytics</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec11" name="specialization" value="Sports Management">
+                                <label for="spec11">Sports Management</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec12" name="specialization" value="Operations Management">
+                                <label for="spec12">Operations Management</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec13" name="specialization" value="Economics">
+                                <label for="spec13">Economics</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec14" name="specialization" value="Hospital & Healthcare">
+                                <label for="spec14">Hospital & Healthcare</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec15" name="specialization" value="Hotel & Hospitality">
+                                <label for="spec15">Hotel & Hospitality</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec16" name="specialization" value="Social Work">
+                                <label for="spec16">Social Work</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec17" name="specialization" value="Agriculture">
+                                <label for="spec17">Agriculture</label>
+                            </div>
+                            <div class="spec-item">
+                                <input type="checkbox" id="spec18" name="specialization" value="Others">
+                                <label for="spec18">Others </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Interest -->
+            <div class="form-section">
+                <div class="section-title">Research Interest</div>
+
+                <div class="form-group">
+                    <label>Research Interest <span class="required">*</span></label>
+                    <textarea name="researchInterest" required
+                        placeholder="Please describe your research interests..."></textarea>
+                </div>
+            </div>
+
+            <!-- Address Information -->
+            <div class="form-section">
+                <div class="section-title">Address</div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Address Line 1 <span class="required">*</span></label>
+                        <input type="text" name="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Address Line 2</label>
+                        <input type="text" name="address2">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City/ Village <span class="required">*</span></label>
+                        <input type="text" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>District <span class="required">*</span></label>
+                        <input type="text" name="district" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>State <span class="required">*</span></label>
+                        <input type="text" name="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country <span class="required">*</span></label>
+                        <input type="text" name="country" value="India" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Pin <span class="required">*</span></label>
+                        <input type="text" name="pin" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Upload -->
+            <div class="form-section">
+                <div class="section-title">Upload Documents</div>
+
+                <div class="form-group">
+                    <label>Aadhar Card <span class="required">*</span></label>
+                    <div class="file-upload">
+                        <input type="file" id="aadhar" name="aadhar" required accept=".pdf,.jpg,.jpeg,.png">
+                        <label for="aadhar" class="file-label">📎 Choose File</label>
+                        <div class="file-name" id="aadharName"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>College/ University ID Card <span class="required">*</span></label>
+                    <div class="file-upload">
+                        <input type="file" id="idCard" name="idCard" required accept=".pdf,.jpg,.jpeg,.png">
+                        <label for="idCard" class="file-label">📎 Choose File</label>
+                        <div class="file-name" id="idCardName"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Updated CV in PDF <span class="required">*</span></label>
+                    <div class="file-upload">
+                        <input type="file" id="cv" name="cv" required accept=".pdf">
+                        <label for="cv" class="file-label">📎 Choose File</label>
+                        <div class="file-name" id="cvName"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Updated Photograph <span class="required">*</span></label>
+                    <div class="file-upload">
+                        <input type="file" id="photo" name="photo" required accept=".jpg,.jpeg,.png">
+                        <label for="photo" class="file-label">📎 Choose File</label>
+                        <div class="file-name" id="photoName"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> I hereby declare that the information provided in this Faculty Registration
+                Form is true and correct to the best of my knowledge. I understand that any false information may lead
+                to rejection of my application or cancellation of my registration.
+                <div class="disclaimer-checkbox">
+                    <input type="checkbox" id="disclaimer" name="disclaimer" required>
+                    <label for="disclaimer">I agree to the terms and conditions</label>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="reset" class="btn-reset">Clear Form</button>
+                <button type="submit" class="btn-submit">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const MAX_FILE_SIZE = 100 * 1024; // 100 KB
+
+        function handleFile(inputId, nameId) {
+            const input = document.getElementById(inputId);
+            const nameBox = document.getElementById(nameId);
+
+            input.addEventListener('change', function () {
+                const file = this.files[0];
+
+                if (!file) {
+                    nameBox.textContent = '';
+                    return;
+                }
+
+                if (file.size > MAX_FILE_SIZE) {
+                    alert("❌ File size must be less than 100 KB");
+                    this.value = "";
+                    nameBox.textContent = "";
+                    return;
+                }
+
+                nameBox.textContent = file.name;
+            });
+        }
+
+        // Attach validation to all file inputs
+        handleFile('aadhar', 'aadharName');
+        handleFile('idCard', 'idCardName');
+        handleFile('cv', 'cvName');
+        handleFile('photo', 'photoName');
+
+        // Final form submission validation
+        document.getElementById('facultyForm').addEventListener('submit', function (e) {
+            const fileInputs = ['aadhar', 'idCard', 'cv', 'photo'];
+
+            for (let id of fileInputs) {
+                const file = document.getElementById(id).files[0];
+                if (file && file.size > MAX_FILE_SIZE) {
+                    alert("❌ One or more files exceed 100 KB");
+                    e.preventDefault();
+                    return;
+                }
+            }
+
+            // Check specialization (already in your logic, kept safely)
+            const specs = document.querySelectorAll('input[name="specialization"]:checked');
+            if (specs.length === 0) {
+                alert('Please select at least one specialization');
+                e.preventDefault();
+                return;
+            }
+
+            // allow submit
+        });
+    </script>
+
+</body>
+
+</html>

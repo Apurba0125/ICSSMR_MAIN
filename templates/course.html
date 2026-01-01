@@ -1,0 +1,704 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ICSSMR</title>
+    <!-- Linking Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Importing Google fonts - Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9f9f9;
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        /* Section Header */
+        .slider-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #ff6b35;
+        }
+
+        /* Decorative Elements */
+        .deco-plus {
+            position: absolute;
+            top: -40px;
+            left: 100px;
+            font-size: 3rem;
+            color: #ff6b35;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .deco-star {
+            position: absolute;
+            top: -30px;
+            right: 150px;
+            font-size: 2.5rem;
+            color: #ff9800;
+            animation: rotate 4s linear infinite;
+        }
+
+        .deco-cross {
+            position: absolute;
+            top: 50%;
+            right: 50px;
+            font-size: 3rem;
+            color: #e74c3c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Wrapper */
+        .wrapper {
+            max-width: 1300px;
+            padding: 20px 10px 60px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Card Styling */
+        .wrapper .card {
+            background: #fff;
+            display: flex;
+            height: auto;
+            flex-direction: column;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wrapper .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b35, #ff8e53);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .wrapper .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .wrapper .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .card .card-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card .card-image img {
+            width: 100%;
+            padding: 15px;
+            border-radius: 28px;
+            object-fit: cover;
+            aspect-ratio: 16 / 9;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card .card-image .card-tag {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 0.75rem;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            z-index: 2;
+        }
+
+        .card .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 25px 25px;
+        }
+
+        .card .card-content .card-title {
+            color: #2c2c2c;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-content .card-title {
+            color: #ff6b35;
+        }
+
+        .card .card-content .card-text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .card .card-footer {
+            display: flex;
+            margin-top: auto;
+            align-items: center;
+            padding-top: 20px;
+            justify-content: space-between;
+            border-top: 2px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .card .card-footer .card-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .card .card-profile .card-profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card .card-profile .card-profile-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #2c2c2c;
+        }
+
+        .card .card-profile .card-profile-role {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .card .card-profile img {
+            width: 42px;
+            height: 42px;
+            margin-right: 12px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .card .card-button {
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+            box-shadow: 0 6px 15px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card .card-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Swiper Pagination */
+        .wrapper .swiper-pagination-bullet {
+            height: 12px;
+            width: 12px;
+            opacity: 1;
+            overflow: hidden;
+            position: relative;
+            background: #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .wrapper .swiper-pagination-bullet-active {
+            background: #ff6b35;
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* Auto-play loading indicator */
+        .wrapper .swiper-pagination-bullet-active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: #ff8e53;
+            transform-origin: left center;
+            transform: scaleX(0);
+            animation: autoplay-loading 5s linear forwards;
+        }
+
+        .container:hover .wrapper .swiper-pagination-bullet-active::before {
+            animation-play-state: paused;
+        }
+
+        @keyframes autoplay-loading {
+            0% {
+                transform: scaleX(0);
+            }
+
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
+        /* Navigation Buttons */
+        .wrapper :where(.swiper-button-prev, .swiper-button-next) {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            color: #ff6b35;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .wrapper :where(.swiper-button-prev, .swiper-button-next)::after {
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        .wrapper :where(.swiper-button-prev, .swiper-button-next):hover {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Decorative dots pattern */
+        .dots-pattern {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #ff6b35;
+            border-radius: 50%;
+        }
+
+        .dot:nth-child(odd) {
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.4);
+            }
+        }
+
+        /* Responsive media query code for small screens */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .deco-plus,
+            .deco-star {
+                font-size: 2rem;
+            }
+
+            .deco-cross {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 15px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+
+            .wrapper {
+                margin: 0 10px 25px;
+                padding-bottom: 70px;
+            }
+
+            .wrapper :where(.swiper-button-prev, .swiper-button-next) {
+                display: none;
+            }
+
+            .deco-plus {
+                left: 20px;
+                font-size: 2rem;
+            }
+
+            .deco-star {
+                right: 20px;
+                font-size: 2rem;
+            }
+
+            .card .card-image .card-tag {
+                top: 25px;
+                left: 25px;
+                padding: 6px 15px;
+                font-size: 0.7rem;
+            }
+
+            .card .card-content .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card .card-button {
+                padding: 10px 22px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .dots-pattern {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+{% include 'header.html' %}
+
+    <div class="slider-section">
+        <!-- Decorative Elements -->
+        <div class="deco-plus">+</div>
+        <div class="deco-star">✦</div>
+        <div class="deco-cross">✕</div>
+
+        <h2 class="section-title">Our  <span class="highlight">Certification Programs</span></h2>
+        <!-- <p class="section-subtitle">
+            Explore cutting-edge trends, expert perspectives, and innovative ideas shaping the future of design,
+            technology, and creativity.
+        </p> -->
+
+        <div class="container swiper">
+            <div class="wrapper">
+                <div class="card-list swiper-wrapper">
+                    <!-- Card 1 -->
+                    <div class="card swiper-slide">
+                        <div class="card-image">
+                            <img src="{% static 'images/BUSINESS ADMISTRATION.png' %}"
+                                alt="Design Trends" />
+                            <div class="card-tag">Business Administration</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Post Graduate Certificate in Business Administration</h3>
+                            <!-- <p class="card-text">Explore the latest user interface design trends that are shaping the
+                                digital landscape this year. From neumorphism to glassmorphism and beyond.</p> -->
+                            <div class="card-footer">
+                                <div class="card-profile">
+                                    <!-- <img src="https://i.pravatar.cc/150?img=12tra" alt="Alex Smith" /> -->
+                                    <div class="card-profile-info">
+                                        <span class="card-profile-name"><i class="fa-solid fa-arrow-up-right-dots"></i></span>
+                                        <!-- <span class="card-profile-role">UI Designer</span> -->
+                                    </div>
+                                </div>
+                                <a href="{% url 'stu_registration' %}" class="card-button">Buy now</a>
+                                <a href="{% url 'PGCBA' %}" class="card-button">Read More</a>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card swiper-slide">
+                        <div class="card-image">
+                            <img src="{% static 'images/HEALTHCARE.png' %}"
+                                alt="Development" />
+                            <div class="card-tag">Healthcare Management</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Post Graduate Certificate in Healthcare Management</h3>
+                            <!-- <p class="card-text">A comprehensive comparison of the most popular frontend frameworks and
+                                libraries that developers are using to build modern web applications.</p> -->
+                            <div class="card-footer">
+                                <div class="card-profile">
+                                    <!-- <img src="https://i.pravatar.cc/150?img=47" alt="Jessica Chen" /> -->
+                                    <div class="card-profile-info">
+                                        <span class="card-profile-name"><span class="card-profile-name"><i class="fa-solid fa-arrow-up-right-dots"></i></span></span>
+                                        <!-- <span class="card-profile-role">Developer</span> -->
+                                    </div>
+                                </div>
+                            <a href="{% url 'stu_registration' %}" class="card-button">Buy now</a>
+                                <a href="{% url 'PGCHM' %}" class="card-button">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card swiper-slide">
+                        <div class="card-image">
+                            <img src="{% static 'images/HUMAN RESOURCE.png' %}" alt="AI" />
+                            <div class="card-tag">Human Resource Management</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Post Graduate Certificate in Human Resource Management</h3>
+                            <!-- <p class="card-text">How artificial intelligence is revolutionizing user experience design
+                                and
+                                enabling more personalized, intuitive interfaces for digital products.</p> -->
+                            <div class="card-footer">
+                                <div class="card-profile">
+                                    <!-- <img src="https://i.pravatar.cc/150?img=33" alt="Marcus Johnson" /> -->
+                                    <div class="card-profile-info">
+                                        <span class="card-profile-name"><i class="fa-solid fa-arrow-up-right-dots"></i></span>
+                                        <!-- <span class="card-profile-role">UX Researcher</span> -->
+                                    </div>
+                                </div>
+                            <a href="{% url 'stu_registration' %}" class="card-button">Buy now</a>
+                                <a href="{% url 'PGCHRM' %}" class="card-button">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card swiper-slide">
+                        <div class="card-image">
+                            <img src="{% static 'images/INVESMENT.png' %}"
+                                alt="Productivity" />
+                            <div class="card-tag">Banking and Investment</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Post Graduate Certificate in Banking and Investment Management</h3>
+                            <!-- <p class="card-text">Designing workspaces that maximize productivity and minimize
+                                distractions
+                                for creative professionals in the hybrid work environment.</p> -->
+                            <div class="card-footer">
+                                <div class="card-profile">
+                                    <!-- <img src="https://i.pravatar.cc/150?img=20" alt="Sarah Miller" /> -->
+                                    <div class="card-profile-info">
+                                        <span class="card-profile-name"><i class="fa-solid fa-arrow-up-right-dots"></i></span>
+                                        <!-- <span class="card-profile-role">Interior Designer</span> -->
+                                    </div>
+                                </div>
+                            <a href="{% url 'stu_registration' %}" class="card-button">Buy now</a>
+                                <a href="{% url 'PGCBIM' %}" class="card-button">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <!-- <div class="card swiper-slide">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600"
+                                alt="Animation" />
+                            <div class="card-tag">Animation</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Micro Animation Designs</h3>
+                            <p class="card-text">The small animations and interactions that make a big difference in
+                                user
+                                experience and how to implement them effectively in your designs.</p>
+                            <div class="card-footer">
+                                <div class="card-profile">
+                                    <img src="https://i.pravatar.cc/150?img=68" alt="David Park" />
+                                    <div class="card-profile-info">
+                                        <span class="card-profile-name">David Park</span>
+                                        <span class="card-profile-role">Motion Designer</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="card-button">Read More</a>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- Card 6 -->
+                    <!-- <div class="card swiper-slide">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600"
+                                alt="Analytics" />
+                            <div class="card-tag">Analytics</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Data-Driven Design Decisions</h3>
+                            <p class="card-text">Learn how to leverage analytics and user data to make informed design
+                                decisions that drive engagement and conversion.</p>
+                            <div class="card-footer">
+                                <div class="card-profile">
+                                    <img src="https://i.pravatar.cc/150?img=29" alt="Emma Davis" />
+                                    <div class="card-profile-info">
+                                        <span class="card-profile-name">Emma Davis</span>
+                                        <span class="card-profile-role">Data Analyst</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="card-button">Read More</a>
+                            </div>
+                        </div>
+                    </div>-->
+                </div> 
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Navigation Buttons -->
+                <div class="swiper-slide-button swiper-button-prev"></div>
+                <div class="swiper-slide-button swiper-button-next"></div>
+            </div>
+        </div>
+
+        <!-- Decorative Dots -->
+        <!-- <div class="dots-pattern">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div> -->
+    </div>
+
+    <!-- Linking Swiper script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Custom Script -->
+    <script>
+        new Swiper(".wrapper", {
+            loop: true,
+            spaceBetween: 30,
+            // Autoplay
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            // Pagination bullets
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+            // Navigation arrows
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            // Responsive breakpoints
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
+
+
+    {% include 'footer.html' %}
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+
+Adminpanel credential
+user:-admin
+password:-123456
+
+
+
+

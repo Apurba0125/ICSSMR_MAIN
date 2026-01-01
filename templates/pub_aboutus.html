@@ -1,0 +1,473 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICSSMR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #333;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 0;
+        }
+
+        .dropbtn:hover {
+            color: #333;
+        }
+
+        .dropbtn::after {
+            content: " ▼";
+            font-size: 0.7rem;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 180px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5f5f5;
+            color: #d4a574;
+            padding-left: 1.3rem;
+        }
+
+        .dropdown-content a:first-child {
+            border-radius: 4px 4px 0 0;
+        }
+
+        .dropdown-content a:last-child {
+            border-radius: 0 0 4px 4px;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 350"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23555" stroke-width="0.5"/></pattern></defs><rect width="1200" height="350" fill="%23333"/><rect width="1200" height="350" fill="url(%23grid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 2rem;
+            font-weight: normal;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Main Content Container */
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .guidelines-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: normal;
+        }
+
+        .page-title .highlight {
+            color: #d4a574;
+        }
+
+        .intro-text {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .intro-text strong {
+            color: #333;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background-color: #e8f0f8;
+            color: #0c5460;
+            padding: 0.75rem 1.25rem;
+            margin: 2rem 0 1.5rem 0;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            border-left: 4px solid #d4a574;
+        }
+
+        /* Checklist Items */
+        .checklist-section {
+            margin-bottom: 2rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem 0;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.8;
+        }
+
+        .checklist-item strong {
+            color: #333;
+            min-width: 180px;
+            font-weight: 600;
+        }
+
+        .description-text {
+            color: #555;
+            line-height: 1.8;
+            margin: 1rem 0 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #19364e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-wrapper {
+                padding: 0 1.5rem;
+            }
+
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: white;
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 9999;
+                align-items: flex-start;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a,
+            .dropbtn {
+                padding: 0.75rem 1.5rem;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid #e0e0e0;
+                color: #333;
+                background: white;
+                font-size: 0.95rem;
+            }
+
+            .dropbtn::after {
+                content: "▾";
+                float: right;
+                font-size: 0.8rem;
+                margin-left: 5px;
+            }
+
+            .dropdown {
+                width: 100%;
+                position: relative;
+            }
+
+            .dropdown-content {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #fff;
+                position: relative;
+                margin-top: 0;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 0;
+                z-index: 10000;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: flex;
+            }
+
+            .dropdown-content a {
+                padding: 0.75rem 2rem;
+                border-bottom: 1px solid #e0e0e0;
+                background: #fff;
+                width: 100%;
+                text-decoration: none;
+                color: #333;
+                font-size: 0.9rem;
+            }
+
+            .dropdown-content a:hover {
+                background: #f5f5f5;
+                color: #d4a574;
+            }
+
+            header {
+                flex-wrap: wrap;
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero {
+                height: 180px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .content-wrapper {
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+
+            .guidelines-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .hero {
+                height: 150px;
+            }
+
+            .hero h1 {
+                font-size: 1.2rem;
+            }
+
+            .content-wrapper {
+                margin: 1.5rem auto;
+                padding: 0 0.75rem;
+            }
+
+            .guidelines-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .page-title {
+                font-size: 1.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-header {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+                margin: 1.5rem 0 1rem 0;
+            }
+
+            .checklist-item {
+                font-size: 0.9rem;
+                padding: 0.6rem 0;
+            }
+
+            .intro-text,
+            .description-text {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+   
+{% include 'pub_header.html' %}
+   
+
+<section class="hero">
+    <h1>INDIAN CENTRE OF SOCIAL SCIENCE AND MANAGEMENT RESEARCH</h1>
+</section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <div class="guidelines-container">
+            <h2 class="page-title">About the <span class="highlight">Journal</span></h2>
+
+            <p class="intro-text">Swami Vivekananda University, an integral component of a prominent educational
+                consortium, was established with the objective of fostering national development through research,
+                innovation, and high-quality education. Spearheaded by Dr. Nandan Gupta, Chancellor, whose expertise and
+                foresight have elevated Swami Vivekananda University into a premier institution of learning.</p>
+
+            <p class="intro-text">The "Journal of Mechanical Engineering Advancements," explores the uncharted
+                territories of mechanical engineering excellence and publishes high-quality articles/review papers/case
+                studies in mechanical engineering, multi-disciplinary engineering sciences. We pride ourselves on being
+                a platform for groundbreaking research and innovation at the engineering forefront, seeking to publish
+                the most promising findings across various domains.</p>
+
+            <p class="intro-text">"Journal of Mechanical Engineering Advancements, is a peer-reviewed open-access
+                e-journal encompasses various branches of Mechanical Engineering.</p>
+
+            <!-- Journal Details -->
+            <div class="section-header">Journal Details:</div>
+
+            <div class="checklist-section">
+                <div class="checklist-item"><strong>Title:</strong> Journal of Mechanical Engineering Advancements</div>
+                <div class="checklist-item"><strong>Frequency:</strong> Three issues per year</div>
+                <div class="checklist-item"><strong>ISSN:</strong> 3048-5673 (Online)</div>
+                <div class="checklist-item"><strong>Publisher:</strong> Swami Vivekanada University, Kolkata, India
+                </div>
+                <div class="checklist-item"><strong>Editor-in-chief:</strong> Dr. Ranjan Kumar</div>
+                <div class="checklist-item"><strong>Starting Year:</strong> 2024</div>
+                <div class="checklist-item"><strong>Subject:</strong> Engineering</div>
+                <div class="checklist-item"><strong>Language:</strong> English</div>
+                <div class="checklist-item"><strong>Publication Format:</strong> Online</div>
+                <div class="checklist-item"><strong>Phone No:</strong> +91-7903332141</div>
+                <div class="checklist-item"><strong>Email id:</strong> <a href="mailto:jmea@svu.ac.in"
+                        style="color: #d4a574; text-decoration: none;">jmea@svu.ac.in</a></div>
+                <div class="checklist-item"><strong>Website:</strong> <a
+                        href="https://www.swamivivekanandauniversity.ac.in/jmea/" target="_blank"
+                        style="color: #d4a574; text-decoration: none;">https://www.swamivivekanandauniversity.ac.in/jmea/</a>
+                </div>
+                <div class="checklist-item"><strong>Address:</strong> Barrackpore-Barasat Road, Sewii Telinipara, Malir
+                    Math, Bara Kanthalia, Kolkata, West Bengal 700121, India</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+   {% include 'pub_footer.html' %}
+
+    
+</body>
+
+</html>

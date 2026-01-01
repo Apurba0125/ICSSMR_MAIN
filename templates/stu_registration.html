@@ -1,0 +1,696 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Professional Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2C4A5F 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            background: #fff;
+            max-width: 900px;
+            width: 100%;
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            margin: 0 auto 15px;
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 28px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .required {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid #e8e8e8;
+            font-size: 14px;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 25px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            accent-color: #667eea;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .file-section {
+            margin-bottom: 20px;
+        }
+
+        .file-label-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .file-upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .file-upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.35);
+        }
+
+        .file-upload-btn:active {
+            transform: translateY(0);
+        }
+
+        .file-name-display {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 500;
+            padding: 8px 12px;
+            background: #f0f3ff;
+            border-radius: 8px;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .disclaimer {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #856404;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #667eea;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 13px 45px;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+
+        .submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit:active {
+            transform: translateY(-1px);
+        }
+
+        .reset {
+            background: #e8e8e8;
+            color: #333;
+        }
+
+        .reset:hover {
+            background: #d8d8d8;
+            transform: translateY(-2px);
+        }
+
+        @media(max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .radio-group {
+                gap: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .file-upload-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .file-name-display {
+                max-width: 100%;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 12px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="date"],
+            input[type="number"],
+            select {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            label {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo-section">
+                <img src="{% static 'images/logo.jpg' %}" alt="Organization Logo" class="logo">
+            </div>
+            <h1>Student Registration Form</h1>
+            <p class="subtitle"><span class="required">*</span>Complete all fields with same as placeholder marked with <span class="required">*</span></p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            <!-- Personal Information -->
+            <div class="section">
+                <div class="section-title">📋 Personal Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name <span class="required">*</span></label>
+                        <input type="text" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth <span class="required">*</span></label>
+                        <input type="date" name="dob" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="male" name="gender" value="male" required>
+                            <label for="male" style="margin-bottom: 0;">Male</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female" style="margin-bottom: 0;">Female</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label for="other" style="margin-bottom: 0;">Other</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="section">
+                <div class="section-title">📞 Contact Information</div>
+                <p class="subtitle"><span class="required">*</span>Provide Valid Email_id And Mobile Number<span class="required">*</span></p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email ID <span class="required">*</span></label>
+                        <input type="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number <span class="required">*</span></label>
+                        <input type="tel" name="mobile" required placeholder="XXXXX XXXXX">
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>WhatsApp Number</label>
+                        <input type="tel" name="whatsapp" placeholder="XXXXX XXXXX">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Qualification -->
+            <div class="section">
+                <div class="section-title">🎓 Qualification</div>
+
+                <div class="form-group">
+                    <label>Highest Qualification <span class="required">*</span></label>
+                    <select name="qualification" required>
+                        <option value="">-- Select Qualification --</option>
+                        <option value="ug">Undergraduate (UG)</option>
+                        <option value="pg">Postgraduate (PG)</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="phd">PhD</option>
+                        <option value="ca">CA (Chartered Accountant)</option>
+                        <option value="other">Other Professional Qualification</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <!-- Course Selection -->
+            <div class="section">
+                <div class="section-title">🎓 Course Selection</div>
+
+                <div class="form-group">
+                    <label>Course Selection <span class="required">*</span></label>
+                    <select name="course" required>
+                        <option value="">-- Select Course --</option>
+                        <option value="PGCHRM">Post Graduate Certificate in Human Resource Management(PGCHRM)</option>
+                        <option value="PGCHM">Post Graduate Certificate in Healthcare Management(PGCHM)</option>
+                        <option value="PGCBIM">Post Graduate Certificate in Banking and Investment Management(PGCBIM)
+                        </option>
+                        <option value="PGCBA">Post Graduate Certificate in Business Administration(PGCBA)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="section">
+                <div class="section-title">🏠 Address Details</div>
+                <p class="subtitle"><span class="required">*</span>Provide Valid Address Details<span class="required">*</span></p>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Address Line 1 <span class="required">*</span></label>
+                        <input type="text" name="address1" required placeholder="Street address, building, etc.">
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Address Line 2</label>
+                        <input type="text" name="address2" placeholder="Apartment, suite, etc. (Optional)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City / Village <span class="required">*</span></label>
+                        <input type="text" name="city" required placeholder="Enter city name">
+                    </div>
+                    <div class="form-group">
+                        <label>District <span class="required">*</span></label>
+                        <input type="text" name="district" required placeholder="Enter district">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>State <span class="required">*</span></label>
+                        <input type="text" name="state" required placeholder="Enter state">
+                    </div>
+                    <div class="form-group">
+                        <label>Country <span class="required">*</span></label>
+                        <input type="text" name="country" value="India" required>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Pin Code <span class="required">*</span></label>
+                        <input type="text" name="pin" required placeholder="Enter 6-digit pin code">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Marks -->
+            <div class="section">
+                <div class="section-title">📊 Academic Marks (%)</div>
+                <p class="subtitle"><span class="required">*</span>Provide Valid Academic Marks<span class="required">*</span></p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Class X (10th) <span class="required">*</span></label>
+                        <input type="number" name="marks_10" min="0" max="100" step="0.01" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Class XII (12th) <span class="required">*</span></label>
+                        <input type="number" name="marks_12" min="0" max="100" step="0.01" required placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Undergraduate (UG) <span class="required">*</span></label>
+                        <input type="number" name="marks_ug" min="0" max="100" step="0.01" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Postgraduate (PG)</label>
+                        <input type="number" name="marks_pg" min="0" max="100" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Uploads -->
+            <div class="section">
+                <div class="section-title">📄 Upload Documents <span class="required">*</span></div>
+                <p class="subtitle"><span class="required">*</span>Upload all required documents in PDF format and Size less than 100kb<span class="required">*</span></p>
+                <div class="file-section">
+                    <span class="file-label-text">UG Final Marksheet</span>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="ug" name="ug_marksheet" accept=".pdf"
+                            onchange="displayFileName('ug')">
+                        <button type="button" class="file-upload-btn" onclick="document.getElementById('ug').click()">
+                            📎 Choose File
+                        </button>
+                        <span id="ug-filename" class="file-name-display" style="display: none;"></span>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <span class="file-label-text">Class X Admit Card</span>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="admit" name="x_admit" accept=".pdf"
+                            onchange="displayFileName('admit')">
+                        <button type="button" class="file-upload-btn"
+                            onclick="document.getElementById('admit').click()">
+                            📎 Choose File
+                        </button>
+                        <span id="admit-filename" class="file-name-display" style="display: none;"></span>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <span class="file-label-text">Class X Marksheet</span>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="x" name="x_marksheet" accept=".pdf"
+                            onchange="displayFileName('x')">
+                        <button type="button" class="file-upload-btn" onclick="document.getElementById('x').click()">
+                            📎 Choose File
+                        </button>
+                        <span id="x-filename" class="file-name-display" style="display: none;"></span>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <span class="file-label-text">Class XII Marksheet</span>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="xii" name="xii_marksheet" accept=".pdf"
+                            onchange="displayFileName('xii')">
+                        <button type="button" class="file-upload-btn" onclick="document.getElementById('xii').click()">
+                            📎 Choose File
+                        </button>
+                        <span id="xii-filename" class="file-name-display" style="display: none;"></span>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <span class="file-label-text">Aadhar Card</span>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="aadhar" name="aadhar" accept=".pdf"
+                            onchange="displayFileName('aadhar')">
+                        <button type="button" class="file-upload-btn"
+                            onclick="document.getElementById('aadhar').click()">
+                            📎 Choose File
+                        </button>
+                        <span id="aadhar-filename" class="file-name-display" style="display: none;"></span>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <span class="file-label-text">Updated CV (PDF)</span>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="cv" name="cv" accept=".pdf" onchange="displayFileName('cv')">
+                        <button type="button" class="file-upload-btn" onclick="document.getElementById('cv').click()">
+                            📎 Choose File
+                        </button>
+                        <span id="cv-filename" class="file-name-display" style="display: none;"></span>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <span class="file-label-text">Photograph</span>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png"
+                            onchange="displayFileName('photo')">
+                        <button type="button" class="file-upload-btn"
+                            onclick="document.getElementById('photo').click()">
+                            📎 Choose File
+                        </button>
+                        <span id="photo-filename" class="file-name-display" style="display: none;"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <input type="checkbox" id="disclaimer" name="disclaimer" required>
+                <label for="disclaimer" style="margin-bottom: 0;">I declare that all the information provided above is
+                    true and correct to the best of my knowledge.</label>
+            </div>
+
+            <!-- Buttons -->
+            <div class="buttons">
+                <button type="reset" class="reset" onclick="clearFileNames()">Clear Form</button>
+                <button type="submit" class="submit">Submit Registration</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    const MAX_FILE_SIZE = 100 * 1024; // 100 KB
+
+    function displayFileName(inputId) {
+        const fileInput = document.getElementById(inputId);
+        const fileNameDisplay = document.getElementById(inputId + '-filename');
+
+        if (!fileInput.files.length) {
+            fileNameDisplay.style.display = 'none';
+            return;
+        }
+
+        const file = fileInput.files[0];
+
+        // 🚫 File size validation
+        if (file.size > MAX_FILE_SIZE) {
+            alert("❌ File size must be less than or equal to 100 KB");
+            fileInput.value = ""; // reset input
+            fileNameDisplay.style.display = 'none';
+            fileNameDisplay.textContent = "";
+            return;
+        }
+
+        // ✅ Valid file
+        fileNameDisplay.textContent = file.name;
+        fileNameDisplay.style.display = 'inline-block';
+    }
+
+    function clearFileNames() {
+        const fileDisplays = document.querySelectorAll('.file-name-display');
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+
+        fileDisplays.forEach(display => {
+            display.style.display = 'none';
+            display.textContent = '';
+        });
+
+        fileInputs.forEach(input => input.value = "");
+    }
+</script>
+
+</body>
+
+</html>

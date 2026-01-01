@@ -1,0 +1,1443 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICSSMR</title>
+    <style>
+        /*ABOUT US PAGE CSS*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9f9f9;
+            padding: 40px 20px;
+        }
+
+        .about-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        /* Decorative Elements */
+        .deco-plus {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 3rem;
+            color: #ff6b35;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .deco-star {
+            position: absolute;
+            top: -10px;
+            right: 50px;
+            font-size: 2.5rem;
+            color: #ff9800;
+            animation: rotate 4s linear infinite;
+        }
+
+        .deco-cross {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: #e74c3c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Arrow SVG */
+        .arrow-container {
+            position: absolute;
+            top: 80px;
+            left: 35%;
+            width: 150px;
+            height: 100px;
+            z-index: 5;
+        }
+
+        .curved-arrow {
+            stroke: #2ecc71;
+            stroke-width: 3;
+            fill: none;
+            animation: drawArrow 2s ease-in-out infinite;
+        }
+
+        @keyframes drawArrow {
+
+            0%,
+            100% {
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dashoffset: 10;
+            }
+        }
+
+        /* Grid Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-box {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #e0e0e0;
+        }
+
+        .image-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .img-1 {
+            grid-column: 1 / 5;
+            grid-row: 1;
+            height: 220px;
+        }
+
+        .img-2 {
+            grid-column: 1 / 6;
+            grid-row: 2;
+            height: 280px;
+        }
+
+        .img-3 {
+            grid-column: 6 / 11;
+            grid-row: 1 / 3;
+            height: 520px;
+        }
+
+        .img-4 {
+            grid-column: 11 / 13;
+            grid-row: 2;
+            height: 220px;
+        }
+
+        .quote-box {
+            grid-column: 11 / 13;
+            grid-row: 1;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.5;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 240px;
+        }
+
+        /* Decorative Dots */
+        .dots-pattern {
+            position: absolute;
+            bottom: 150px;
+            left: 42%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #2c3e50;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .dot:nth-child(odd) {
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .arrow-container {
+                display: none;
+            }
+
+            .content-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 15px;
+            }
+
+            .img-1 {
+                grid-column: 1 / 4;
+                grid-row: 1;
+                height: 180px;
+            }
+
+            .img-2 {
+                grid-column: 1 / 4;
+                grid-row: 2;
+                height: 220px;
+            }
+
+            .img-3 {
+                grid-column: 4 / 7;
+                grid-row: 1 / 3;
+                height: 415px;
+            }
+
+            .quote-box {
+                grid-column: 1 / 7;
+                grid-row: 3;
+                height: auto;
+                padding: 25px;
+                font-size: 1.1rem;
+            }
+
+            .img-4 {
+                grid-column: 1 / 7;
+                grid-row: 4;
+                height: 200px;
+            }
+
+            .dots-pattern {
+                left: 32%;
+                bottom: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+
+            .deco-plus,
+            .deco-star,
+            .deco-cross {
+                font-size: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .img-1,
+            .img-2,
+            .img-3,
+            .img-4,
+            .quote-box {
+                grid-column: 1;
+                grid-row: auto;
+                height: 250px;
+            }
+
+            .quote-box {
+                height: auto;
+                padding: 30px 20px;
+                font-size: 1.2rem;
+            }
+
+            .dots-pattern {
+                display: none;
+            }
+        }
+
+        /* About ICTRD Section */
+        .about-ictrd-section {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 30px;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #666;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .certifications-wrapper {
+            margin-top: 60px;
+        }
+
+        .cert-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 40px;
+        }
+
+        .cert-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .cert-illustration {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .cert-illustration svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .cert-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #666;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .cert-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .cert-link:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        /* Responsive for About ICTRD Section */
+        @media (max-width: 1024px) {
+            .about-ictrd-section {
+                padding: 50px 30px;
+                margin: 60px auto 0;
+            }
+
+            .about-title {
+                font-size: 2rem;
+            }
+
+            .cert-title {
+                font-size: 1.8rem;
+            }
+
+            .cert-content {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-ictrd-section {
+                padding: 40px 20px;
+                margin: 40px 10px 0;
+                border-radius: 15px;
+            }
+
+            .about-title {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .about-text {
+                font-size: 1rem;
+                text-align: left;
+            }
+
+            .cert-title {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
+
+            .cert-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .cert-illustration {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .cert-text p {
+                font-size: 1rem;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-ictrd-section {
+                padding: 30px 15px;
+            }
+
+            .about-title {
+                font-size: 1.5rem;
+
+            }
+
+            .cert-title {
+                font-size: 1.4rem;
+            }
+
+            .about-text,
+            .cert-text p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .quote-box {
+                font-size: 1rem;
+                padding: 25px 15px;
+            }
+
+            .img-1,
+            .img-2,
+            .img-3,
+            .img-4 {
+                height: 200px;
+            }
+        }
+
+.highlight {
+    color: #ff6b35; /* bright orange tone consistent with your design */
+}
+
+
+        /* Reverse layout for alternating design */
+.reverse-layout {
+    grid-template-columns: 1.2fr 1fr; /* swaps text and image ratio */
+}
+
+.reverse-layout .cert-text {
+    order: 1;
+}
+
+.reverse-layout .cert-illustration {
+    order: 2;
+}
+
+/* For responsiveness */
+@media (max-width: 768px) {
+    .reverse-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .reverse-layout .cert-text,
+    .reverse-layout .cert-illustration {
+        order: unset;
+    }
+}
+
+
+
+
+/* Why Choose ICSSMR Section */
+ .highlight {
+            color: #ff6b35;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-section {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        /* Decorative Elements */
+        .deco-circle {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            border: 4px solid #ff6b35;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .deco-triangle {
+            position: absolute;
+            bottom: 50px;
+            left: 40px;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid #2ecc71;
+            opacity: 0.2;
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .why-choose-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .why-choose-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .why-choose-subtitle {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        /* Reasons Grid */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .reason-card {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #ff8e53);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .reason-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .reason-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            background: white;
+        }
+
+        .reason-icon-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 142, 83, 0.1) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .reason-card:hover .reason-icon-box {
+            transform: rotateY(360deg);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(255, 142, 83, 0.2) 100%);
+        }
+
+        .reason-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+        }
+
+        .reason-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Why Choose Points */
+        .why-choose-points {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-choose-points::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .points-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .points-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .point-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .point-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
+        }
+
+        .point-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .point-content h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .point-content p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .why-choose-section {
+                padding: 50px 30px;
+                margin: 60px auto 0;
+            }
+
+            .why-choose-title {
+                font-size: 2rem;
+            }
+
+            .why-choose-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+
+            .reasons-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .points-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .why-choose-section {
+                padding: 40px 20px;
+                margin: 40px 10px 0;
+                border-radius: 15px;
+            }
+
+            .deco-circle {
+                width: 60px;
+                height: 60px;
+                top: 20px;
+                right: 20px;
+            }
+
+            .deco-triangle {
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                border-bottom: 50px solid #2ecc71;
+                bottom: 30px;
+                left: 20px;
+            }
+
+            .why-choose-title {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .why-choose-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+
+            .reasons-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .reason-card {
+                padding: 30px 20px;
+            }
+
+            .reason-icon-box {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .reason-title {
+                font-size: 1.2rem;
+            }
+
+            .reason-description {
+                font-size: 0.9rem;
+            }
+
+            .why-choose-points {
+                padding: 40px 25px;
+                margin-top: 40px;
+                border-radius: 15px;
+            }
+
+            .points-title {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
+
+            .points-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .point-item {
+                padding: 20px;
+            }
+
+            .point-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .point-content h4 {
+                font-size: 1rem;
+            }
+
+            .point-content p {
+                font-size: 0.85rem;
+            }
+
+            .cta-section {
+                margin-top: 40px;
+            }
+
+            .cta-button {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-choose-section {
+                padding: 30px 15px;
+            }
+
+            .why-choose-title {
+                font-size: 1.5rem;
+            }
+
+            .why-choose-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .reason-card {
+                padding: 25px 15px;
+            }
+
+            .reason-icon-box {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+
+            .reason-title {
+                font-size: 1.1rem;
+            }
+
+            .why-choose-points {
+                padding: 30px 20px;
+            }
+
+            .points-title {
+                font-size: 1.4rem;
+            }
+
+            .point-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 20px 15px;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <section class="about-section">
+        <!-- Decorative Elements -->
+        <div class="deco-plus">+</div>
+        <div class="deco-star">✦</div>
+        <div class="deco-cross">✕</div>
+
+        <h2 class="section-title">About Us- Our Key Activities</h2>
+
+        <!-- Curved Arrow -->
+        <div class="arrow-container">
+            <svg viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
+                <path class="curved-arrow" d="M 10 50 Q 75 10, 140 50" stroke-dasharray="5,5"
+                    marker-end="url(#arrowhead)" />
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#2ecc71" />
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- Dots Pattern -->
+        <!-- <div class="dots-pattern">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div> -->
+
+        <!-- Image Grid -->
+        <div class="content-grid">
+            <div class="image-box img-1">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500" alt="Office Space 1">
+            </div>
+
+            <div class="image-box img-2">
+                <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=500" alt="Office Interior">
+            </div>
+
+            <div class="image-box img-3">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500" alt="Building Exterior">
+            </div>
+
+            <div class="quote-box">
+                "The Management of Today is The Leadership of Tomorrow"
+            </div>
+
+            <div class="image-box img-4">
+                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=500" alt="Office Space 2">
+            </div>
+        </div>
+    </section>
+
+    <!-- About ICTRD Section -->
+    <section class="about-ictrd-section">
+        <div class="about-container">
+        <h4 class="about-title">About <span class="highlight">ICSSMR</span></h4>
+            <p class="about-text">
+                The Indian Centre for Social Science and Management Research (ICSSMR) is a national-level autonomous
+                organization
+                registered under the Micro, Small and Medium Enterprises (MSME), Government of India. It is dedicated to
+                advancing
+                excellence in social science and management education, research, and innovation. ICSSMR provides a
+                dynamic platform for
+                academicians, researchers, professionals, and students to collaborate, exchange knowledge, and
+                contribute to national
+                and global development through meaningful academic and professional activities.
+            </p>
+            <p class="about-text">
+                At ICSSMR, we believe that quality research and education are the foundation of societal progress. Our
+                initiatives are
+                designed to bridge the gap between academia and practice, enabling students, scholars, and institutions
+                to enhance their
+                skills, capabilities, and impact.
+            </p>
+
+
+
+<h4 class="about-title">Core <span class="highlight"> Services</span></h4>
+            <!-- <h4 class="about-title">Core Services</h4> -->
+            <p class="about-text">
+                The Indian Centre for Social Science and Management Research (ICSSMR) is a national-level autonomous
+                organization
+                registered under the Micro, Small and Medium Enterprises (MSME), Government of India. It is dedicated to
+                advancing
+                excellence in social science and management education, research, and innovation. ICSSMR provides a
+                dynamic platform
+                for
+                academicians, researchers, professionals, and students to collaborate, exchange knowledge, and
+                contribute to
+                national
+                and global development through meaningful academic and professional activities.
+            </p>
+            <p class="about-text">
+                At ICSSMR, we believe that quality research and education are the foundation of societal progress. Our
+                initiatives
+                are
+                designed to bridge the gap between academia and practice, enabling students, scholars, and institutions
+                to enhance
+                their
+                skills, capabilities, and impact.
+            </p>
+
+            <!-- Certifications Section -->
+            <div class="certifications-wrapper">
+                <h2 class="cert-title">Certificate and Training Programs </h2>
+                <div class="cert-content">
+
+                    <div class="cert-illustration">
+                        <div class="cert-illustration">
+                            <img src="{% static 'images/certification.avif' %}" alt="Certification Illustration"
+                                style="width:400px; height:auto;">
+
+                        </div>
+                    </div>
+                    <div class="cert-text">
+                        <p>
+                            ICSSMR conducts skill-oriented certificate, diploma, and professional development programs
+                            across diverse areas of
+                            management and social sciences. These programs are tailored to meet the evolving academic
+                            and industry demands, helping
+                            participants enhance their analytical, research, and managerial skills. Specialized
+                            workshops and certification courses
+                            are also offered for faculty members, research scholars, and professionals seeking to stay
+                            updated with modern tools,
+                            methodologies, and trends.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+<!-- image and then text prototype -->
+            <!-- <div class="certifications-wrapper">
+                <h2 class="cert-title">Certificate and Training Programs </h2>
+                <div class="cert-content">
+                    <div class="cert-illustration">
+                        <div class="cert-illustration">
+                            <img src="{% static 'images/certification.avif' %}" alt="Certification Illustration"
+                                style="width:400px; height:auto;">
+            
+                        </div>
+                    </div>
+                    <div class="cert-text">
+                        <p>
+                            ICSSMR conducts skill-oriented certificate, diploma, and professional development programs
+                            across diverse areas of
+                            management and social sciences. These programs are tailored to meet the evolving academic
+                            and industry demands, helping
+                            participants enhance their analytical, research, and managerial skills. Specialized
+                            workshops and certification courses
+                            are also offered for faculty members, research scholars, and professionals seeking to stay
+                            updated with modern tools,
+                            methodologies, and trends.
+                        </p>
+                    </div>
+                </div>
+            </div> -->
+
+
+<!-- text then image prototype -->
+            <!-- <div class="certifications-wrapper">
+            <h2 class="cert-title">Internship Program</h2>
+            <div class="cert-content reverse-layout">
+                <div class="cert-text">
+                    <p>
+                        The ICSSMR Internship Program is designed for undergraduate and postgraduate students as well as research
+                        scholars,
+                        offering them real-time exposure to research, academic documentation, project writing, and data analysis.
+                        The program
+                        blends theoretical learning with practical experience, preparing participants for academic, corporate, and
+                        research
+                        careers.
+                    </p>
+                </div>
+                <div class="cert-illustration">
+                    <img src="{% static 'images/1.jpeg' %}" alt="Research Illustration" style="width:400px; height:auto;">
+                </div>
+            </div>
+            </div> -->
+
+
+
+            <div class="certifications-wrapper">
+                <h2 class="cert-title">Internship Program</h2>
+                <div class="cert-content reverse-layout">
+                    <div class="cert-text">
+                        <p>
+                            The ICSSMR Internship Program is designed for undergraduate and postgraduate students as well as research scholars,
+                            offering them real-time exposure to research, academic documentation, project writing, and data analysis. The program
+                            blends theoretical learning with practical experience, preparing participants for academic, corporate, and research
+                            careers.
+                        </p>
+                    </div>
+                    <div class="cert-illustration">
+                        <img src="{% static 'images/1.jpeg' %}" alt="Research Illustration" style="width:400px; height:auto;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications-wrapper">
+                <h2 class="cert-title">Publication of Books and Research Journals</h2>
+                <div class="cert-content">
+            
+                    <div class="cert-illustration">
+                        <div class="cert-illustration">
+                            <img src="{% static 'images/2.png' %}" alt="Certification Illustration"
+                                style="width:400px; height:auto;">
+            
+                        </div>
+                    </div>
+                    <div class="cert-text">
+                        <p>
+                        ICSSMR publishes a series of peer-reviewed journals, edited volumes, and academic books in the fields of management,
+                        economics, commerce, and social sciences. These publications provide a credible platform for scholars to showcase their
+                        original work, contributing to academic excellence and the dissemination of innovative ideas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications-wrapper">
+                        <h2 class="cert-title">Research & Innovation</h2>
+                        <div class="cert-content reverse-layout">
+                            <div class="cert-text">
+                                <p>
+                                    We promote a culture of research excellence and innovation by supporting interdisciplinary studies, research
+                                    collaborations, and evidence-based policy analysis. ICSSMR encourages faculty members, students, and independent
+                                    researchers to undertake innovative projects that address emerging social, economic, and managerial issues at regional,
+                                    national, and global levels.
+                                </p>
+                            </div>
+                            <div class="cert-illustration">
+                                <img src="{% static 'images/3.jpeg' %}" alt="Research Illustration" style="width:400px; height:auto;">
+                            </div>
+                        </div>
+                        </div>
+
+
+                        <div class="certifications-wrapper">
+                            <h2 class="cert-title">Funded Research Grants</h2>
+                            <div class="cert-content">
+                        
+                                <div class="cert-illustration">
+                                    <div class="cert-illustration">
+                                        <img src="{% static 'images/funding.png' %}" alt="Certification Illustration"
+                                            style="width:400px; height:auto;">
+                        
+                                    </div>
+                                </div>
+                                <div class="cert-text">
+                                    <p>
+                                    ICSSMR provides research grants and funding support to scholars and institutions engaged in pioneering studies in
+                                    management and social sciences. These grants are awarded based on the originality, social relevance, and expected impact
+                                    of the proposed research, thereby encouraging innovation and academic contribution.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="certifications-wrapper">
+                            <h2 class="cert-title">Quality Assessments and Ranking Framework for HEIs</h2>
+                            <div class="cert-content reverse-layout">
+                                <div class="cert-text">
+                                    <p>
+                                    To ensure academic quality and institutional growth, ICSSMR conducts quality assessments, accreditation support, and
+                                    ranking frameworks for higher education institutions (HEIs). Our evaluation model is based on parameters such as
+                                    research output, teaching-learning processes, governance, infrastructure, innovation, and community engagement. The
+                                    framework assists institutions in benchmarking and improving their overall performance.
+                                    </p>
+                                </div>
+                                <div class="cert-illustration">
+                                    <img src="{% static 'images/1.png' %}" alt="Research Illustration" style="width:400px; height:auto;">
+                                </div>
+                            </div>
+                        </div>
+
+    <div class="certifications-wrapper">
+        <h2 class="cert-title">Membership Programs</h2>
+        <div class="cert-content">
+            <div class="cert-illustration">
+                <div class="cert-illustration">
+                    <img src="{% static 'images/Membership Programs.png' %}" alt="Certification Illustration"
+                        style="width:400px; height:auto;">
+    
+                </div>
+            </div>
+            <div class="cert-text">
+                <p>
+                    ICSSMR offers Individual and Institutional Memberships to academicians, students, researchers, and corporate
+                    professionals. Members receive exclusive access to ICSSMR events, training, publications, and funding opportunities.
+                    Membership provides a platform to network, collaborate, and stay connected with a national and global community of
+                    scholars and practitioners.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="certifications-wrapper">
+        <h2 class="cert-title">Institutional Collaborations</h2>
+        <div class="cert-content reverse-layout">
+            <div class="cert-text">
+                <p>
+                Through Memoranda of Understanding (MoUs) and strategic partnerships with universities, colleges, and research
+                organizations, ICSSMR establishes Centres of Excellence in Research and Innovation. These collaborations promote joint
+                research projects, faculty exchange, academic audits, and collaborative conferences.
+                </p>
+            </div>
+            <div class="cert-illustration">
+                <img src="{% static 'images/4.png' %}" alt="Research Illustration" style="width:400px; height:auto;">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="certifications-wrapper">
+        <h2 class="cert-title">Academic Events</h2>
+        <div class="cert-content">
+            <div class="cert-illustration">
+                <div class="cert-illustration">
+                    <img src="{% static 'images/5.png' %}" alt="Certification Illustration"
+                        style="width:400px; height:auto;">
+    
+                </div>
+            </div>
+            <div class="cert-text">
+                <p>
+                    ICSSMR regularly organizes webinars, seminars, conferences, symposiums, workshops, and panel discussions to promote
+                    intellectual engagement and knowledge sharing. These events provide opportunities for participants to interact with
+                    leading experts, present research papers, and exchange ideas on emerging topics in management and social sciences.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="certifications-wrapper">
+        <h2 class="cert-title">Awards and Recognition</h2>
+        <div class="cert-content reverse-layout">
+            <div class="cert-text">
+                <p>
+                    ICSSMR recognizes and celebrates academic and professional excellence through its annual awards, fellowships, and
+                    recognitions. These honours are conferred upon outstanding individuals and institutions that have made significant
+                    contributions to research, education, innovation, and leadership in the field of management and social sciences.
+                </p>
+            </div>
+            <div class="cert-illustration">
+                <img src="{% static 'images/Employee-Rewards-and-Recognition-2.png' %}" alt="Research Illustration" style="width:400px; height:auto;">
+            </div>
+        </div>
+    </div>
+            
+
+        </div>
+    </section>
+
+
+
+
+
+    <section class="why-choose-section">
+        <!-- Decorative Elements -->
+        <div class="deco-circle"></div>
+        <div class="deco-triangle"></div>
+    
+        <section class="why-choose-container">
+            <h2 class="why-choose-title">Why Choose <span class="highlight">ICSSMR</span>?</h2>
+            <p class="why-choose-subtitle">
+                ICSSMR stands as a beacon of academic excellence and innovation in social science and management
+                research.
+                Discover what makes us the preferred choice for thousands of scholars and institutions nationwide.
+            </p>
+    
+            <!-- Reasons Grid -->
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-icon-box">🎓</div>
+                    <h3 class="reason-title">National Recognition</h3>
+                    <p class="reason-description">
+                    Registered under MSME, Government of India ensuring credibility and recognition.
+                    </p>
+                </div>
+    
+                <div class="reason-card">
+                    <div class="reason-icon-box">🔬</div>
+                    <h3 class="reason-title">Research Excellence</h3>
+                    <p class="reason-description">
+                        Comprehensive initiatives supporting education, research, and professional development.
+                    </p>
+                </div>
+    
+                <div class="reason-card">
+                    <div class="reason-icon-box">🤝</div>
+                    <h3 class="reason-title">Industry Collaboration</h3>
+                    <p class="reason-description">
+                        Collaborations with higher education institutions, industries, and research councils.
+                    </p>
+                </div>
+    
+                <div class="reason-card">
+                    <div class="reason-icon-box">📚</div>
+                    <h3 class="reason-title">Comprehensive Programs</h3>
+                    <p class="reason-description">
+                        Commitment to sustainable, inclusive, and innovation-driven growth in management and social sciences.
+                    </p>
+                </div>
+    
+                <div class="reason-card">
+                    <div class="reason-icon-box">👨‍🏫</div>
+                    <h3 class="reason-title">Expert Faculty Network</h3>
+                    <p class="reason-description">
+                    Dedicated to nurturing the next generation of thinkers, leaders, and change-makers.
+                    </p>
+                </div>
+    
+                <div class="reason-card">
+                    <div class="reason-icon-box">🚀</div>
+                    <h3 class="reason-title">Career Advancement</h3>
+                    <p class="reason-description">
+                        Practical internship programs and skill development initiatives that enhance employability and
+                        career prospects.
+                    </p>
+                </div>
+            </div>
+    </section>
+    <h2 class="why-choose-title">Join the <span class="highlight">ICSSMR Community</span></h2>
+    <p class="why-choose-subtitle">
+        Become part of a growing network of scholars, researchers, and professionals contributing to a more informed,
+        equitable,
+        and progressive society. Together, we can redefine the future of management and social science education through
+        research, innovation, and collaboration.
+    </p>
+    </section>
+
+
+
+    {% include 'footer.html' %}
+</body>
+
+</html>

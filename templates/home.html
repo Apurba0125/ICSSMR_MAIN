@@ -1,0 +1,458 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICSSMR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <!-- Top Bar -->
+    <!-- <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-item">
+                <span><i class="fa-solid fa-headset"></i></span>
+                <span>Call us now: 1800 267 6070</span>
+            </div>
+            <div class="top-bar-item">
+                <span><i class="fa-solid fa-location-dot"></i></span>
+                <span>ICTRD Secretariat Building, Plot No. 72, Shahakar Layout, Trimurti Nagar, Bhamti, Nagpur -
+                    440022</span>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Header -->
+    <!-- <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-img">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/logo.jpg' %}" alt="ICTRD Logo"
+                            style="width:60px; height:60px; border-radius:50%; border:2px solid #000; padding:5px;">
+                    </a>
+                </div>
+                <div class="logo-text">
+                    <p>INDIAN CENTRE OF SOCIAL SCIENCE AND MANAGEMENT RESEARCH</p>
+                    <h2>भारतीय सामाजिक विज्ञान और प्रबंधन अनुसंधान केंद्र</h2>
+                </div>
+            </div>
+            <div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                <a href="#" class="login-btn">Login</a>
+            </div>
+        </div>
+    </header> -->
+
+    <!-- Navigation -->
+    <!-- <nav class="main-nav">
+        <div class="nav-content">
+            <ul id="mainNav">
+            <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="{% url 'aboutus' %}" class="has-dropdown">About ICSSMR</a>
+                    <ul class="dropdown-single">
+                    <li><a href="{% url 'aboutus' %}">About us</a></li>
+                        <li><a href="#">Vision & Mission</a></li>
+                        <li><a href="#">Board Members</a></li>
+                        <li><a href="# ">International Advisory Council</a></li>
+                        <li><a href="#">Official Notification</a></li>
+                    </ul>
+                </li>
+                <li class="has-mobile-dropdown">
+                    <a href="#" class="has-dropdown" onclick="toggleDropdown(event, this)">Membership Home</a>
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <h3>Membership Types</h3>
+                                <ul>
+                                    <li><a href="#">ICTRD Memberships</a></li>
+                                    <li><a href="#">Individual Memberships</a></li>
+                                    <li><a href="#">Institutional Membership</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-section">
+                                <h3>Membership Tools</h3>
+                                <ul>
+                                    <li><a href="#">Compare Memberships</a></li>
+                                    <li><a href="#">Renew Membership</a></li>
+                                    <li><a href="#">Check Membership</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-section">
+                                <h3>Get Involved</h3>
+                                <ul>
+                                    <li><a href="#">ICTRD Student Chapter</a></li>
+                                    <li><a href="#">Corporate Affiliation</a></li>
+                                    <li><a href="#">Institutional Affiliation</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="membership-quote">
+                            <p>Membership in ICTRD is a symbol of excellence, uniting innovators and leaders to shape
+                                the future through technology.</p>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#" class="has-dropdown">Certifications</a></li>
+                <li><a href="#" class="has-dropdown">Schemes</a></li>
+                <li><a href="#" class="has-dropdown">Events & Initiatives</a></li>
+                <li><a href="#">Publications</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav> -->
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div>
+                <div class="hero-tags">
+                    <span class="tag">INDIAN CENTRE OF SOCIAL SCIENCE AND MANAGEMENT RESEARCH</span>
+                </div>
+                <!-- The management of today is the leadership of tomorrow. -->
+                <h1>The Management of Today is The <span class="highlight"> Leadership of Tomorrow</span></h1>
+                <p style="color: #fff;">In response to the evolving landscape of management education, we integrate modern technologies and emerging managerial
+                professions at the undergraduate level</p>
+                <!-- <div class="play-btn"><i class="fa-solid fa-play" style="color: black;"></i></div> -->
+            </div>
+            <div class="director-card">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-slide active">
+                        <div class="quote-icon">"</div>
+                        <p style="font-size: 0.9rem; line-height: 1.8;">
+                            Comming Soon...
+                        </p>
+                        <p style="margin-top: 15px; color: #666; font-size: 0.85rem;">
+                            <!-- <strong>- Dr. Prashant Bhuiyan</strong><br> -->
+                            <!-- <em>Vice President and Chairman (Technical)</em> -->
+                        </p>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon">"</div>
+                        <p style="font-size: 0.9rem; line-height: 1.8;">
+                            Comming Soon...
+                        </p>
+                        <p style="margin-top: 15px; color: #666; font-size: 0.85rem;">
+                            <!-- <strong>- SHRI NARENDRA MODI</strong><br> -->
+                            <!-- <em>Honourable Prime Minister of India</em> -->
+                        </p>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon">"</div>
+                        <p style="font-size: 0.9rem; line-height: 1.8; ">
+                            Comming Soon...
+                        </p>
+                        <p style="margin-top: 15px; color: #666; font-size: 0.85rem;">
+                            <!-- <strong>- Dr. Rajesh Kumar</strong><br> -->
+                            <!-- <em>Director General, ICTRD</em> -->
+                        </p>
+                    </div>
+                </div>
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="changeSlide(-1)">‹</button>
+                    <button class="slider-btn" onclick="changeSlide(1)">›</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome" id="about">
+        <div class="welcome-content">
+            <div>
+                <h2>Welcome to <span class="highlight">ICSSMR</span></h2>
+                <p>The Indian Centre for Social Science and Management Research (ICSSMR) envisions becoming a premier national and
+                international hub for excellence in education, research, innovation, and knowledge dissemination in the fields of
+                Management and Social Sciences.</p>
+                <p style="margin-top: 15px;">Our vision is to empower individuals and institutions through quality research, value-based education, and intellectual
+                collaboration that bridges the gap between theory and practice. We aim to nurture a research-driven ecosystem where
+                academicians, researchers, students, and industry experts can work collectively to address complex social, economic, and
+                managerial challenges. ICSSMR aspires to contribute to the creation of an inclusive and sustainable knowledge society,
+                where research is not only confined to academic boundaries but also generates meaningful impact for communities,
+                industries, and policy-making bodies. By fostering innovation, ethical leadership, and interdisciplinary learning,
+                ICSSMR seeks to redefine the standards of higher education and research excellence in India and beyond.</p>
+                <!-- <p style="margin-top: 15px;">The Indian Centre of Social Science and Management Research promotes
+                    scholarly inquiry and research excellence across
+                    various fields, including economics, sociology, political science, management, and public policy.
+                    Our vision is to
+                    nurture researchers and professionals who drive positive social and organizational change.</p> -->
+                <a href="{% url 'aboutus' %}" class="btn-primary">More about us</a>
+            </div>
+            <div class="building-img">
+                <img src="{% static 'images/logo.jpg' %}" alt="ICTRD Building">
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Certifications -->
+
+
+    
+    <!-- <section class="certifications">
+        <div class="certifications-content">
+            <h2>Our Certification Programs</h2>
+            <div class="cert-slider-container">
+                <button class="cert-nav-btn prev" onclick="moveCertSlide(-1)">‹</button>
+                <button class="cert-nav-btn next" onclick="moveCertSlide(1)">›</button>
+                <div class="cert-slider" id="certSlider">
+                    <div class="cert-card">
+                        <div class="cert-image">Business Administration</div>
+                        <div class="cert-info">
+                            <h3>Post Graduate Certificate in Business Administration</h3>
+                            <div class="cert-tags">
+                                <span class="cert-tag">Validity: 1 years</span>
+                                <span class="cert-tag">Beginner to Advanced</span>
+                            </div>
+                            <div class="cert-price">Rs. 1300</div>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">Healthcare </div>
+                        <div class="cert-info">
+                            <h3>Post Graduate Certificate in Healthcare Management</h3>
+                            <div class="cert-tags">
+                                <span class="cert-tag">Validity: 1 years</span>
+                                <span class="cert-tag">Beginner to Advanced</span>
+                            </div>
+                            <div class="cert-price">Rs. 1325</div>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">Human Resource </div>
+                        <div class="cert-info">
+                            <h3>Post Graduate Certificate in Human Resource Management</h3>
+                            <div class="cert-tags">
+                                <span class="cert-tag">Validity: 1 years</span>
+                                <span class="cert-tag">Beginner to Advanced</span>
+                            </div>
+                            <div class="cert-price">Rs. 1400</div>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">Banking and Investment </div>
+                        <div class="cert-info">
+                            <h3>Post Graduate Certificate in Banking and Investment Management</h3>
+                            <div class="cert-tags">
+                                <span class="cert-tag">Validity: 1 years</span>
+                                <span class="cert-tag">Advanced Level</span>
+                            </div>
+                            <div class="cert-price">Rs. 1450</div>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">About Courses</div>
+                        <div class="cert-info">
+                            <h3>More Courses..</h3>
+                            <div class="cert-tags">
+                                <span class="cert-tag">Validity: 3 years</span>
+                                <span class="cert-tag">
+                                    
+                                    <a href="{% url 'course' %}">For more courses visit..</a>
+                                </span>
+                                <a href="{% url 'aboutus' %}" class="cert-tag">For more courses visit..</a>
+                                <span class="cert-tag">Expert Level</span>
+                            </div>
+                            <div class="cert-price">Rs. 1800</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cert-dots" id="certDots"></div>
+        </div>
+    </section> -->
+
+
+
+<section style="padding: 80px 20px; background: #f8f9fa;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; flex-wrap: wrap;">
+        <!-- Text Content -->
+        <div style="flex: 1; min-width: 300px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px; font-weight: 700; color: #333;">
+                Our Certification <span style="color: #FF8C00;">Programs</span>
+            </h2>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: #666; margin-bottom: 20px;">
+                The Indian Centre for Social Science and Management Research (ICSSMR) offers comprehensive Post Graduate
+                Certificate programs designed to enhance your career. Our specialized certifications in Business
+                Administration, Healthcare Management, Human Resource Management, Banking and Investment Management, and
+                more are crafted to provide industry-relevant skills and knowledge.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                Each program features validity periods ranging from 1 to 3 years and caters to all levels—from beginners
+                to advanced professionals. We aim to empower individuals through quality education and research-driven
+                learning that bridges the gap between theory and practice.
+            </p>
+            <a href="{% url 'course' %}" class="btn-primary">
+                View All Courses
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- News Section -->
+    <!-- <section class="news">
+        <div class="news-content">
+            <h2>Latest News & Updates</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image"></div>
+                    <div class="news-info">
+                        <h3>ICTRD to Dr. B.R. Ambedkar University of Social Sciences (BRAUSs) Sign a MoU of
+                            Collaboration</h3>
+                        <p>The agreement covers from the period 2025. This latest Centers for Technical Research and
+                            Development...</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image"></div>
+                    <div class="news-info">
+                        <h3>Hon'ble Union Minister Nitin Gadkari inaugurates ICTRD Secretariat and Research building
+                        </h3>
+                        <p>In a landmark occasion for ICTRD's evolution and development at the national level...</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image"></div>
+                    <div class="news-info">
+                        <h3>Updates</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• International Research Program (Click here)</li>
+                            <li>• Click here to read about ICTRD's information (Click here)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Membership -->
+    <section class="membership-section">
+        <div class="membership-header">
+            <span class="subtext">Explore all the</span>
+            <h2>Membership Options</h2>
+        </div>
+
+         <div class="membership-container">
+            <!--<div class="membership-card">
+                <div class="icon blue">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Associate Membership</h3>
+                <p>सहयोगी सदस्यता</p>
+            </div> -->
+            <a href="{% url 'associate_membershipform' %}" style="text-decoration:none; color:inherit;">
+                <div class="membership-card">
+                    <div class="icon blue">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Associate Membership</h3>
+                    <p>सहयोगी सदस्यता</p>
+                </div>
+            </a>
+
+
+            <!-- <div class="membership-card">
+                <div class="icon orange">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Faculty Membership</h3>
+                <p>अध्यापकिय सदस्यता</p>
+            </div> -->
+
+            <a href="{% url 'faculty_membershipform' %}" style="text-decoration:none; color:inherit;">
+                <div class="membership-card">
+                    <div class="icon orange">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Faculty Membership</h3>
+                    <p>अध्यापकिय सदस्यता</p>
+                </div>
+            </a>
+
+            <!-- <div class="membership-card">
+                <div class="icon teal">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3>Students Membership</h3>
+                <p>छात्रों के लिये सदस्यता</p>
+            </div> -->
+
+            <a href="{% url 'stu_membershipform' %}" style="text-decoration:none; color:inherit;">
+                <div class="membership-card">
+                    <div class="icon teal">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Students Membership</h3>
+                    <p>छात्रों के लिये सदस्यता</p>
+                </div>
+            </a>
+
+            <div class="membership-card">
+                <div class="icon green">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Honorary Membership</h3>
+                <p>मानसेवी सदस्यता</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+        <div class="cta-content">
+            <div>
+                <h2>Become a Member!</h2>
+                <p>ICCSMR facilitates connection and unlock opportunities for growth. Join our vibrant community to
+                    engage with experts and elevate your professional standing. Validate industry expertise and be a
+                    pillar of India's Technology community.</p>
+            </div>
+            <a href="#" class="btn-white">Apply Now!</a>
+        </div>
+    </div>
+
+    <!-- Logo Slider Section -->
+    <section class="logo-slider">
+        <div class="slider-track">
+            <img src="{% static 'images/logo.jpg' %}" alt="Partner 1">
+            <img src="{% static 'images/user-1.jpg' %}" alt="Partner 2">
+            <img src="{% static 'images/user-2.jpg' %}" alt="Partner 3">
+            <img src="{% static 'images/user-3.jpg' %}" alt="Partner 4">
+            <img src="{% static 'images/user-4.jpg' %}" alt="Partner 5">
+            <img src="{% static 'images/logo.jpg' %}" alt="Partner 1">
+            <img src="{% static 'images/user-1.jpg' %}" alt="Partner 2">
+            <img src="{% static 'images/user-2.jpg' %}" alt="Partner 3">
+            <img src="{% static 'images/user-3.jpg' %}" alt="Partner 4">
+            <img src="{% static 'images/user-4.jpg' %}" alt="Partner 5">
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+        <h2>Subscribe to our Newsletter for Newest Course Updates</h2>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+
+    <script src="static/app.js"></script>
+</body>
+
+</html>

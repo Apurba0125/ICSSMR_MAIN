@@ -1,0 +1,292 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Page | BillDesk Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f6f8fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .payment-container {
+            display: flex;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 90%;
+            max-width: 1100px;
+        }
+
+        .methods {
+            width: 25%;
+            border-right: 1px solid #eee;
+            background: #fafafa;
+        }
+
+        .methods h3 {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .tab {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            transition: 0.2s;
+        }
+
+        .tab:hover,
+        .tab.active {
+            background: #e9f3ff;
+            color: #0071eb;
+        }
+
+        .content {
+            width: 50%;
+            padding: 30px;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .summary {
+            width: 25%;
+            background: #fafafa;
+            border-left: 1px solid #eee;
+            padding: 20px;
+        }
+
+        .summary h4 {
+            margin-bottom: 10px;
+        }
+
+        .summary .order-id {
+            color: #0071eb;
+            margin-bottom: 10px;
+        }
+
+        .summary .amount {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #0071eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005ec3;
+        }
+
+        .qr-box {
+            text-align: center;
+        }
+
+        .qr-box img {
+            width: 180px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                flex-direction: column;
+            }
+
+            .methods,
+            .content,
+            .summary {
+                width: 100%;
+                border: none;
+            }
+
+            .methods {
+                display: flex;
+                overflow-x: auto;
+            }
+
+            .tab {
+                flex: 1;
+                text-align: center;
+                border-bottom: none;
+                border-right: 1px solid #eee;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .summary {
+                border-top: 1px solid #eee;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <div class="methods">
+            <h3>Payment Methods</h3>
+            <!-- <div class="tab active" data-target="card">💳 Credit / Debit Card</div>
+            <div class="tab" data-target="netbank">🏦 Net Banking</div>
+            <div class="tab" data-target="upi">💠 UPI</div>
+            <div class="tab" data-target="wallet">👛 Wallets</div> -->
+            <div class="tab" data-target="qr">📱 UPI QR</div>
+        </div>
+
+        <div class="content">
+            <!-- CARD -->
+            <!-- <div class="content-section active" id="card">
+                <h3>Enter Card Details</h3>
+                <input type="text" placeholder="Card Number" maxlength="16" />
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" placeholder="MM/YY" maxlength="5" />
+                    <input type="password" placeholder="CVV" maxlength="3" />
+                </div>
+                <input type="text" placeholder="Card Holder Name" />
+                <button>Pay ₹895</button>
+            </div> -->
+
+            <!-- NET BANKING -->
+            <!-- <div class="content-section" id="netbank">
+                <h3>Select Your Bank</h3>
+                <select>
+                    <option>Select Bank</option>
+                    <option>State Bank of India</option>
+                    <option>HDFC Bank</option>
+                    <option>ICICI Bank</option>
+                    <option>Axis Bank</option>
+                    <option>Punjab National Bank</option>
+                </select>
+                <button>Proceed to Pay</button>
+            </div> -->
+
+            <!-- UPI -->
+            <!-- <div class="content-section" id="upi">
+                <h3>Pay using UPI</h3>
+                <input type="text" placeholder="Enter your UPI ID (e.g. name@upi)" />
+                <button>Verify & Pay</button>
+            </div> -->
+
+            <!-- WALLETS -->
+            <!-- <div class="content-section" id="wallet">
+                <h3>Select Wallet</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button>Paytm Wallet</button>
+                    <button>PhonePe Wallet</button>
+                    <button>Amazon Pay</button>
+                    <button>Mobikwik</button>
+                </div>
+            </div> -->
+
+            <!-- QR CODE -->
+            <div class="content-section active" id="qr">
+                <h3>Scan the QR Code</h3>
+                <div class="qr-box">
+                    <img src="{% static 'images/pay.png' %}"
+                        alt="QR Code">
+                    <p>Code expires in <b>05:00</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h4>Summary</h4>
+            <p>Order ID:</p>
+            <p class="order-id">Q20251103232822390516094790</p>
+            <p>Total Amount:</p>
+            <p class="amount">₹1000</p>
+            <!-- <p style="margin-top:20px; color:gray;">Powered by BillDesk</p> -->
+        </div>
+    </div>
+
+   <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content-section');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            contents.forEach(c => c.classList.remove('active'));
+            document.getElementById(tab.dataset.target).classList.add('active');
+
+            // Reset timer if QR tab selected again
+            if (tab.dataset.target === 'qr') startTimer();
+        });
+    });
+
+    // ====== TIMER & REDIRECT FUNCTION ======
+    let timerInterval;
+    function startTimer() {
+        clearInterval(timerInterval); // Reset any existing timer
+        let time = 300; // 5 minutes = 300 seconds
+        const display = document.querySelector(".qr-box p b");
+
+        timerInterval = setInterval(() => {
+            const minutes = String(Math.floor(time / 60)).padStart(2, '0');
+            const seconds = String(time % 60).padStart(2, '0');
+            display.textContent = `${minutes}:${seconds}`;
+
+            if (time <= 0) {
+                clearInterval(timerInterval);
+                window.location.href = "home.html"; // 👈 redirect page
+            }
+            time--;
+        }, 1000);
+    }
+
+    // Start timer immediately when QR tab is open by default
+    if (document.querySelector('#qr').classList.contains('active')) {
+        startTimer();
+    }
+</script>
+
+</body>
+
+</html>
